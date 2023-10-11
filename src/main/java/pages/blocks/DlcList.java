@@ -30,8 +30,6 @@ public class DlcList {
     }
 
     public DlcList checkShortDlsList(List<String> listOfDlc) {
-//        return $(GAME_DLS_LOCATOR).getOwnText();
-//        $(By.cssSelector(".gameDlcBlocks")).text()
         $$(DLC_NAME_LOCATOR).texts().containsAll(listOfDlc);
         return this;
     }
@@ -44,8 +42,6 @@ public class DlcList {
     }
 
     public GamePage selectDlc(String dlcName) {
-//        $(By.xpath("//*[.='" + name + "']/.."))
-//        $(By.xpath(".//*[.='" + dlcName + "']")).click();
         dlsList.findElement(By.xpath("//*[.='" + dlcName + "']")).click();
         return new GamePage();
     }

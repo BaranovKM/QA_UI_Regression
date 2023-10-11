@@ -17,7 +17,7 @@ public static final List<String> GAME_SCREENSHOTS_URLS = ImmutableList.of(
         "https://cdn.cloudflare.steamstatic.com/steam/apps/2183900/ss_90d54dd35ea29f80ccbe7618682d36736c2697df.1920x1080.jpg");
     private Search search;
     @Test
-    public void test_T002() {
+    public void test() {
         page.navigateOnMainPage()
                 .waitForPageLoaded();
 

@@ -1,7 +1,5 @@
 import com.google.common.collect.ImmutableList;
 import org.testng.annotations.Test;
-import pages.DlcPage;
-import pages.GamePage;
 
 import java.util.List;
 
@@ -15,7 +13,7 @@ public class UnauthorizedUserCanSeeDlsPage extends BaseTest {
 
 
     @Test
-    public void test_T002() {
+    public void test() {
 
         page.navigateOnPageByUrl(GAME_URL);
 
