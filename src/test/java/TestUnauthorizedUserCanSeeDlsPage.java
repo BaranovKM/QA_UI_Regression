@@ -3,7 +3,7 @@ import org.testng.annotations.Test;
 
 import java.util.List;
 
-public class UnauthorizedUserCanSeeDlsPage extends BaseTest {
+public class TestUnauthorizedUserCanSeeDlsPage extends BaseTest {
     public static final String GAME_URL = "https://store.steampowered.com/app/281990/Stellaris/";
     public static final List<String> SHORT_DLC_LIST = ImmutableList.of("Stellaris: Galactic Paragons", "Stellaris: First Contact Story Pack", "Stellaris: Toxoids Species Pack", "Stellaris: Overlord", "Stellaris: Aquatics Species Pack");
     public static final List<String> FULL_DLC_LIST = ImmutableList.of("Stellaris: Galactic Paragons", "Stellaris: First Contact Story Pack", "Stellaris: Toxoids Species Pack", "Stellaris: Overlord", "Stellaris: Aquatics Species Pack", "Stellaris: Nemesis", "Stellaris: Necroids Species Pack", "Stellaris: Federations", "Stellaris: Lithoids Species Pack", "Stellaris: Ancient Relics Story Pack", "Stellaris: MegaCorp", "Stellaris: Apocalypse", "Stellaris: Utopia", "Stellaris: Distant Stars Story Pack", "Stellaris: Synthetic Dawn Story Pack", "Stellaris: Leviathans Story Pack", "Stellaris: Humanoids Species Pack", "Stellaris: Plantoids Species Pack", "Stellaris: Complete Soundtrack", "Stellaris: Infinite Frontiers (eBook)", "Stellaris: Anniversary Portraits", "Stellaris: Galaxy Edition Upgrade Pack");
