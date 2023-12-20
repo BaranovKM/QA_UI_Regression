@@ -1,8 +1,7 @@
 package pages.blocks;
 
 import com.codeborne.selenide.Condition;
-import com.codeborne.selenide.SelenideElement;
-import com.google.common.collect.ImmutableList;
+import com.codeborne.selenide.ElementsCollection;
 import org.openqa.selenium.By;
 import pages.GamePage;
 
@@ -19,10 +18,10 @@ public class DlcList {
     public static final By SHOW_ALL_DLS_BUTTON_LOCATOR = By.id("dlc_show_all_link");
 
 
-    private SelenideElement dlsList;
+    private ElementsCollection dlsList;
 
     public DlcList() {
-        dlsList = $(DLC_LIST_LOCATOR);
+        dlsList = $$(DLC_NAME_LOCATOR);
     }
 
     public boolean isDisplayed() {
@@ -30,19 +29,20 @@ public class DlcList {
     }
 
     public DlcList checkShortDlsList(List<String> listOfDlc) {
-        $$(DLC_NAME_LOCATOR).texts().containsAll(listOfDlc);
+        //checking as 'contains all' because dlc's list contain another 10+ items(but they are empty)
+        dlsList.texts().containsAll(listOfDlc);
         return this;
     }
 
     public DlcList checkAllDlsList(List<String> listOfDlc) {
         $(SHOW_ALL_DLS_BUTTON_LOCATOR).click();
         $(SHOW_ALL_DLS_BUTTON_LOCATOR).shouldNot(Condition.visible, Duration.ofSeconds(1));
-        $$(DLC_NAME_LOCATOR).texts().containsAll(listOfDlc);
+        dlsList.texts().containsAll(listOfDlc);
         return this;
     }
 
     public GamePage selectDlc(String dlcName) {
-        dlsList.findElement(By.xpath("//*[.='" + dlcName + "']")).click();
+        dlsList.findBy(Condition.exactText(dlcName)).click();
         return new GamePage();
     }
 }
