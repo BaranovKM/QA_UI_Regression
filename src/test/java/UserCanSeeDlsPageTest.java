@@ -3,7 +3,7 @@ import org.testng.annotations.Test;
 
 import java.util.List;
 
-public class TestUnauthorizedUserCanSeeDlsPage extends BaseTest {
+public class UserCanSeeDlsPageTest extends BaseTest {
     public static final String GAME_URL = "https://store.steampowered.com/app/489630/Warhammer_40000_Gladius__Relics_of_War/";
     public static final List<String> SHORT_DLC_LIST = ImmutableList.of("Warhammer 40,000: Gladius - Drukhari", "Warhammer 40,000: Gladius - Firepower Pack", "Warhammer 40,000: Gladius - Adepta Sororitas", "Warhammer 40,000: Gladius - Escalation Pack", "Warhammer 40,000: Gladius - Adeptus Mechanicus");
     public static final List<String> FULL_DLC_LIST = ImmutableList.of("Warhammer 40,000: Gladius - Drukhari", "Warhammer 40,000: Gladius - Firepower Pack", "Warhammer 40,000: Gladius - Adepta Sororitas", "Warhammer 40,000: Gladius - Escalation Pack", "Warhammer 40,000: Gladius - Adeptus Mechanicus", "Warhammer 40,000: Gladius - Specialist Pack", "Warhammer 40,000: Gladius - Craftworld Aeldari", "Warhammer 40,000: Gladius - Assault Pack", "Warhammer 40,000: Gladius - T'au", "Warhammer 40,000: Gladius - Fortification Pack", "Warhammer 40,000: Gladius - Chaos Space Marines", "Warhammer 40,000: Gladius - Tyranids", "Warhammer 40,000: Gladius - Reinforcement Pack", "Warhammer 40,000: Gladius - Lord of Skulls", "Warhammer 40,000: Gladius - Relics of War - Soundtrack", "Warhammer 40,000: Gladius - Relics of War - Wallpapers");

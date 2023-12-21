@@ -4,7 +4,7 @@ import pages.blocks.Search;
 
 import java.util.List;
 
-public class TestUnauthorizedUserCanSeeGamePage extends BaseTest{
+public class UserCanSeeGamePageTest extends BaseTest{
 public static final String GAME_NAME = "warhammer space marine";
 public static final String GAME_DESCRIPTION = "ABOUT THIS GAME\n\n\nThe galaxy is in peril. Entire worlds are falling. The Imperium needs you.\n\nEmbody the superhuman skill and brutality of a Space Marine, the greatest of the Emperor’s warriors. Unleash deadly abilities and an arsenal of devastating weaponry to obliterate the relentless Tyranid hordes.\n\nHold at bay the horrors of the galaxy in epic battles on far-flung planets. Uncover dark secrets and drive back the everlasting night to prove your ultimate loyalty to humanity.\n\nHeed the call of battle.\nFor there is only war.";
 public static final String GAME_REQUIREMENTS = "MINIMUM:\nAdditional Notes: To be announced\nRECOMMENDED:\nAdditional Notes: To be announced";
