@@ -4,6 +4,7 @@ import com.codeborne.selenide.Condition;
 import org.openqa.selenium.By;
 import org.testng.Assert;
 import pages.blocks.DlcList;
+import pages.blocks.MediaZone;
 
 import java.time.Duration;
 import java.util.ArrayList;
@@ -22,6 +23,7 @@ public class GamePage extends BasePage {
     public static final By READ_MORE_LOCATOR = By.cssSelector(".game_page_autocollapse_readmore");
 
     private DlcList dlcList;
+    private MediaZone mediaZone;
 
     public GamePage waitForPageLoaded() {
         $(GAME_TITLE_LOCATOR).shouldBe(Condition.visible, Duration.ofSeconds(10));
@@ -50,7 +52,7 @@ public class GamePage extends BasePage {
         return this;
     }
 
-    public GamePage expandDescription(){
+    public GamePage expandDescription() {
         $(GAME_DESCRIPTION_LOCATOR)
                 .ancestor(COLLAPSED_SECTION_CLASS_NAME)
                 .find(READ_MORE_LOCATOR)
@@ -63,6 +65,13 @@ public class GamePage extends BasePage {
             dlcList = new DlcList();
         }
         return dlcList;
+    }
+
+    public MediaZone getMediaZone() {
+        if (mediaZone == null) {
+            mediaZone = new MediaZone();
+        }
+        return mediaZone;
     }
 
 }
