@@ -3,17 +3,24 @@ package pages.blocks;
 import com.codeborne.selenide.Condition;
 import com.codeborne.selenide.SelenideElement;
 import org.openqa.selenium.By;
+import org.testng.Assert;
+import utils.Errors;
 import utils.TestUtils;
+
 import java.nio.file.Path;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import static com.codeborne.selenide.Selenide.$;
 
 public class MediaZone {
     public static final By DEFAULT_MEDIA_ZONE_LOCATOR = By.cssSelector(".highlight_overflow");
-    public static final By THUMBNAIL_IMAGE_LOCATOR = By.cssSelector(".highlight_strip_screenshot > img");
+    public static final By THUMBNAIL_SCREENSHOT_LOCATOR = By.cssSelector(".highlight_strip_screenshot > img");
+    public static final By THUMBNAIL_VIDEO_LOCATOR = By.cssSelector(".highlight_strip_movie > img");
     public static final By MIDDLE_SIZE_SCREENSHOT_LOCATOR = By.cssSelector(".highlight_screenshot_link");
     public static final By MIDDLE_SIZE_SCREENSHOT_IMAGE_LOCATOR = By.cssSelector(".highlight_screenshot_link > img");
+    public static final By MIDDLE_SIZE_VIDEO_LOCATOR = By.cssSelector(".highlight_movie");
     public static final By SLIDER_LEFT_LOCATOR = By.cssSelector(".slider_left");
     public static final By SLIDER_RIGHT_LOCATOR = By.cssSelector(".slider_right");
 
@@ -35,7 +42,7 @@ public class MediaZone {
     }
 
     public MediaZone clickThumbnail(int thumbnailNumber) {
-        mediaZone.findAll(THUMBNAIL_IMAGE_LOCATOR).get(thumbnailNumber).click();
+        mediaZone.findAll(THUMBNAIL_SCREENSHOT_LOCATOR).get(thumbnailNumber).click();
         return this;
     }
 
@@ -58,14 +65,14 @@ public class MediaZone {
     }
 
     public MediaZone checkScreenshotsThumbnailsUrls(List<String> expectedUrls) {
-        List<String> actualUrls = TestUtils.extractUrls(mediaZone.findAll(THUMBNAIL_IMAGE_LOCATOR));
+        List<String> actualUrls = TestUtils.extractUrls(mediaZone.findAll(THUMBNAIL_SCREENSHOT_LOCATOR));
         actualUrls = TestUtils.trimUrls(actualUrls);
         TestUtils.compareUrls(actualUrls, expectedUrls);
         return this;
     }
 
     public MediaZone checkScreenshotThumbnailImage(Path expectedThumbnail) {
-        String actualThumbnailUrl = mediaZone.find(THUMBNAIL_IMAGE_LOCATOR).attr(IMAGE_LINK_ATTRIBUTE);
+        String actualThumbnailUrl = mediaZone.find(THUMBNAIL_SCREENSHOT_LOCATOR).attr(IMAGE_LINK_ATTRIBUTE);
         Path actualThumbnail = TestUtils.downloadImage(actualThumbnailUrl);
         TestUtils.compareImages(actualThumbnail, expectedThumbnail);
         return this;
@@ -85,13 +92,23 @@ public class MediaZone {
         return this;
     }
 
-    public MediaZone checkVideosThumbnailsUrls(List<String> videosThumbnailUrls) {
-        //todo add check for urls
+    public MediaZone checkVideosThumbnailsUrls(List<String> expectedUrls) {
+        List<String> actualUrls = TestUtils.extractUrls(mediaZone.findAll(THUMBNAIL_VIDEO_LOCATOR));
+        actualUrls = TestUtils.trimUrls(actualUrls);
+        TestUtils.compareUrls(actualUrls, expectedUrls);
         return this;
     }
 
-    public MediaZone checkFullSizeVideo(String videoPath) {
-        //todo add download video and compare with original
+    public MediaZone checkMiddleSizeVideo(Map<String, String> expectedAttributes) {
+        SelenideElement video = mediaZone.find(MIDDLE_SIZE_VIDEO_LOCATOR);
+        String actualAttributeValue;
+
+        for (Map.Entry<String, String> entry : expectedAttributes.entrySet()) {
+            actualAttributeValue = video.attr(entry.getKey());
+            Assert.assertTrue(
+                    actualAttributeValue.contains(entry.getValue()),
+                    String.format(Errors.ATTRIBUTE_ERROR, actualAttributeValue, entry.getValue()));
+        }
         return this;
     }
 }
