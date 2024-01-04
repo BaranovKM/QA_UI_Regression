@@ -5,7 +5,6 @@ import org.testng.Assert;
 
 import javax.imageio.ImageIO;
 import java.awt.image.RenderedImage;
-import java.io.File;
 import java.io.IOException;
 import java.net.URL;
 import java.nio.file.Files;
@@ -33,19 +32,15 @@ public class TestUtils {
             Assert.assertEquals(
                     Files.mismatch(actualImage, expectedImage),
                     -1L, // Files.mismatch return -1 when files are identical
-                    "Images are different");
-            //todo add expected and actual images to allure report
+                    Errors.IMAGES_MISMATCH_ERROR);
         } catch (IOException e) {
             throw new RuntimeException(e);
         }
     }
 
-    //todo make refactoring and add this method instead other urls extractions
     public static List<String> extractUrls(ElementsCollection elements) {
         List<String> urls = new ArrayList<String>();
-        elements
-                .iterator()
-                .forEachRemaining(e -> urls.add(e.lastChild().attr("src")));
+        elements.iterator().forEachRemaining(e -> urls.add(e.attr("src")));
         return urls;
     }
 
@@ -56,8 +51,6 @@ public class TestUtils {
     }
 
     public static void compareUrls(List<String> actualUrls, List<String> expectedUrls) {
-        //equality check ignoring order
-        Assert.assertTrue(actualUrls.containsAll(expectedUrls) && expectedUrls.containsAll(actualUrls),
-                "Actual URLs doesn't match with expected");
+        Assert.assertEqualsNoOrder(actualUrls, expectedUrls,Errors.URLS_MISMATCH_ERROR);
     }
 }
