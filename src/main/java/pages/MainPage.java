@@ -5,6 +5,7 @@ import com.codeborne.selenide.Selenide;
 import org.openqa.selenium.By;
 import org.testng.Assert;
 import pages.blocks.*;
+import utils.Errors;
 
 import java.time.Duration;
 
@@ -23,7 +24,7 @@ public class MainPage extends BasePage {
         $(FEATURED_SECTION_LOCATOR).shouldBe(Condition.visible, Duration.ofSeconds(10));
         Assert.assertTrue(
                 Selenide.title().equalsIgnoreCase(MAIN_PAGE_TITLE_TEXT),
-                "Page doesn't have expected title");
+                Errors.PAGE_TITLE_MISMATCH_ERROR);
         return this;
     }
 
@@ -39,7 +40,7 @@ public class MainPage extends BasePage {
         Assert.assertEquals(
                 getHeader().isDisplayed(),
                 isDisplayed,
-                "Something wrong with page header");
+                Errors.PAGE_HEADER_ERROR);
         return this;
     }
 
@@ -47,7 +48,7 @@ public class MainPage extends BasePage {
         Assert.assertEquals(
                 getFooter().isDisplayed(),
                 isDisplayed,
-                "Something wrong with footer");
+                Errors.PAGE_FOOTER_ERROR);
         return this;
     }
 
