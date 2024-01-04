@@ -16,6 +16,8 @@ public class ScreenshotsPopup {
     public static final By PREVIOUS_BUTTON_LOCATOR = By.cssSelector(".previous");
     public static final By NEXT_BUTTON_LOCATOR = By.cssSelector(".next");
 
+    public static final String ATTRIBUTE_SRC = "src";
+
     private SelenideElement popup;
 
     public ScreenshotsPopup() {
@@ -36,19 +38,19 @@ public class ScreenshotsPopup {
         List<String> actualUrls = new ArrayList<>();
         //todo refactoring
         while ($(PREVIOUS_BUTTON_LOCATOR).isDisplayed()) { //click throw gallery and collect all screenshots urls
-            actualUrls.add($(SCREENSHOT_LOCATOR).attr("src"));
+            actualUrls.add($(SCREENSHOT_LOCATOR).attr(ATTRIBUTE_SRC));
             $(PREVIOUS_BUTTON_LOCATOR).click();
         }
-        actualUrls.add($(SCREENSHOT_LOCATOR).attr("src")); //collect last url
+        actualUrls.add($(SCREENSHOT_LOCATOR).attr(ATTRIBUTE_SRC)); //collect last url
         actualUrls = TestUtils.trimUrls(actualUrls);
         TestUtils.compareUrls(actualUrls, expectedUrls);
         return this;
     }
 
     public ScreenshotsPopup checkFullSizeScreenshotImage(Path expectedImage) {
-        String actualImageUrl = popup.find(SCREENSHOT_LOCATOR).attr("src");
+        String actualImageUrl = popup.find(SCREENSHOT_LOCATOR).attr(ATTRIBUTE_SRC);
         Path actualImage = TestUtils.downloadImage(actualImageUrl);
-        TestUtils.compareImages(actualImage,expectedImage);
+        TestUtils.compareImages(actualImage, expectedImage);
         return this;
     }
 }
