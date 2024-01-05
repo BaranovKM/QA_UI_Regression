@@ -11,12 +11,13 @@ import static com.codeborne.selenide.Selenide.$$;
 
 public class GutterMenu {
     //todo set locator
-    public static final By DEFAULT_GUTTER_MENU_LOCATOR = By.cssSelector("set locator");
+    public static final By DEFAULT_GUTTER_MENU_LOCATOR = By.xpath("//*[.='Browse by genre']/..");
+    public static final By GUTTER_ITEM_LOCATOR = By.cssSelector(".gutter_item");
 
     private SelenideElement gutterMenuElement;
 
     public GutterMenu() {
-        gutterMenuElement = $(By.xpath("//*[.='Browse by genre']/.."));
+        gutterMenuElement = $(DEFAULT_GUTTER_MENU_LOCATOR);
     }
 
     public GutterMenu(String name) {
@@ -24,7 +25,7 @@ public class GutterMenu {
     }
 
     public GutterMenu checkMenuHasItems(List<String> items) {
-        gutterMenuElement.$$(By.cssSelector(".gutter_item")).shouldHave(CollectionCondition.texts(items));
+        gutterMenuElement.findAll(GUTTER_ITEM_LOCATOR).shouldHave(CollectionCondition.texts(items));
         return this;
     }
 }
