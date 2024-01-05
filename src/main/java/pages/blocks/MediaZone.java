@@ -8,7 +8,6 @@ import utils.Errors;
 import utils.TestUtils;
 
 import java.nio.file.Path;
-import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
@@ -107,7 +106,8 @@ public class MediaZone {
             actualAttributeValue = video.attr(entry.getKey());
             Assert.assertTrue(
                     actualAttributeValue.contains(entry.getValue()),
-                    String.format(Errors.ATTRIBUTE_ERROR, actualAttributeValue, entry.getValue()));
+                    //TODO fix error length
+                    String.format(Errors.ATTRIBUTE_MISMATCH_ERROR, actualAttributeValue, entry.getValue()));
         }
         return this;
     }

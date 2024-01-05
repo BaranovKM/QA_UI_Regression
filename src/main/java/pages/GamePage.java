@@ -40,18 +40,6 @@ public class GamePage extends BasePage {
         return this;
     }
 
-    public GamePage checkScreenshots(List<String> expectedUrls) {
-        List<String> actualUrls = new ArrayList<>();
-        $$(GAME_SCREENSHOTS_LOCATOR).stream().forEach(
-                e -> actualUrls.add(
-                        e.getAttribute("href").substring(0,
-                                e.getAttribute("href").indexOf("?"))));//cut off last character because they are random id
-
-        Assert.assertTrue(actualUrls.containsAll(expectedUrls) && expectedUrls.containsAll(actualUrls),
-                "Actual screenshots doesn't match with expected");
-        return this;
-    }
-
     public GamePage expandDescription() {
         $(GAME_DESCRIPTION_LOCATOR)
                 .ancestor(COLLAPSED_SECTION_CLASS_NAME)
