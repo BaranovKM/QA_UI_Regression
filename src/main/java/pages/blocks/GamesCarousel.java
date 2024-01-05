@@ -38,7 +38,7 @@ public class GamesCarousel {
                             .shouldHave(Condition.attributeMatching("href", GAMES_URLS_REGEX_PATTERN)));
         } else {
             carousel
-                    .$(CAROUSEL_LINKS_LOCATOR)
+                    .find(CAROUSEL_LINKS_LOCATOR)
                     .shouldNotBe(Condition.exist, Duration.ofSeconds(10));
         }
     }
