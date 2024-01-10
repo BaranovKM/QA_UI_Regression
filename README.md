@@ -48,5 +48,5 @@ The project has a simple structure : page object classes and few basic tests. Th
 At the moment these tests can only be run localy, but I'm working on implementing a full Jenkins pipeline running in parallel across multiple browsers inside Docker conteiners(based on Selenoid).
 
 
-![Screenshot of test run](/resources/assets/uiTestScreenshot.jpg)
+![Screenshot of test run](/src/main/resources/assets/uiTestScreenshot.jpg)
 
